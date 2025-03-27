@@ -1,10 +1,8 @@
-
 import React from "react";
-import { Button } from "@/components/ui/button";
 
 export const Footer = () => {
   return (
-    <footer className="bg-black w-full overflow-hidden mt-[49px] px-[50px] py-[39px] rounded-[100px_100px_0px_0px] max-md:max-w-full max-md:mt-10 max-md:px-5">
+    <footer id="contact" className="bg-black w-full overflow-hidden mt-[49px] px-[50px] py-[39px] rounded-[100px_100px_0px_0px] max-md:max-w-full max-md:mt-10 max-md:px-5">
       <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
         <div className="w-[33%] max-md:w-full max-md:ml-0">
           <div className="flex w-full flex-col self-stretch items-start my-auto max-md:mt-10">

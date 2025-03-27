@@ -2,7 +2,7 @@ import React from "react";
 
 export const InitiativesSection = () => {
   return (
-    <section className="bg-white flex w-full flex-col pt-[75px] pb-[204px] px-20 rounded-[100px_100px_0px_0px] max-md:max-w-full max-md:pb-[100px] max-md:px-5">
+    <section id="initiatives" className="bg-white flex w-full flex-col pt-[75px] pb-[204px] px-20 rounded-[100px_100px_0px_0px] max-md:max-w-full max-md:pb-[100px] max-md:px-5">
       <div className="self-center flex w-full max-w-[1088px] flex-col items-stretch max-md:max-w-full">
         <h2 className="text-[#1E1E1E] text-center text-[40px] font-bold max-md:max-w-full">
           Key Initiatives

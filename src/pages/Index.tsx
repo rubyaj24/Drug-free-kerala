@@ -1,4 +1,6 @@
+
 import React from "react";
+import { Header } from "@/components/landing/Header";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { PillarsSection } from "@/components/landing/PillarsSection";
@@ -9,6 +11,7 @@ import { Footer } from "@/components/landing/Footer";
 const Index = () => {
   return (
     <div className="bg-[rgba(239,238,236,1)] flex flex-col overflow-hidden items-stretch">
+      <Header />
       <HeroSection />
       <AboutSection />
       <PillarsSection />

@@ -1,10 +1,9 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 
 export const AboutSection = () => {
   return (
-    <section className="bg-[rgba(239,238,236,1)] w-full overflow-hidden pl-[50px] max-md:max-w-full max-md:pl-5">
+    <section id="about" className="bg-[rgba(239,238,236,1)] w-full overflow-hidden pl-[50px] max-md:max-w-full max-md:pl-5">
       <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
         <div className="w-[39%] max-md:w-full max-md:ml-0">
           <div className="flex w-full flex-col self-stretch items-start my-auto max-md:max-w-full max-md:mt-10">

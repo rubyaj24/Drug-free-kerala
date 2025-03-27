@@ -1,9 +1,8 @@
-
 import React from "react";
 
 export const JourneySection = () => {
   return (
-    <section className="flex flex-col items-center px-4">
+    <section id="journey" className="flex flex-col items-center">
       <h2 className="text-[#3B3B3B] text-[40px] font-bold leading-[60px] text-center mt-[89px] max-md:max-w-full max-md:mt-10">
         <span className="font-medium">Our Journey:</span> From Darkness to Light
       </h2>

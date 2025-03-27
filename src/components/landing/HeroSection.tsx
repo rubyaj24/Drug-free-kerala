@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
   return (
-    <header className="flex flex-col bg-blend-normal relative min-h-[940px] w-full overflow-hidden pt-[29px] pb-[199px] px-20 max-md:max-w-full max-md:pb-[100px] max-md:px-5">
+    <header className="flex flex-col bg-blend-normal relative min-h-[940px] w-full overflow-hidden pt-[89px] pb-[199px] px-20 max-md:max-w-full max-md:pb-[100px] max-md:px-5">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/a8684813001112ddca76c9158312ab954aeb0847?placeholderIfAbsent=true"
         alt="Hero background"
