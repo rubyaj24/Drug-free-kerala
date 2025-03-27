@@ -1,12 +1,14 @@
+
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 export const AboutSection = () => {
   return (
     <section className="bg-[rgba(239,238,236,1)] w-full overflow-hidden pl-[50px] max-md:max-w-full max-md:pl-5">
       <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
         <div className="w-[39%] max-md:w-full max-md:ml-0">
-          <div className="flex w-full flex-col self-stretch items-stretch my-auto max-md:max-w-full max-md:mt-10">
-            <div className="flex flex-col items-stretch justify-center max-md:max-w-full">
+          <div className="flex w-full flex-col self-stretch items-start my-auto max-md:max-w-full max-md:mt-10">
+            <div className="flex flex-col items-start justify-center max-md:max-w-full">
               <h2 className="text-black text-[40px] font-bold leading-[60px]">
                 <span className="font-medium">Towards</span>
                 <br />
@@ -21,9 +23,12 @@ export const AboutSection = () => {
                 drug-free.
               </p>
             </div>
-            <button className="rounded bg-white min-w-[150px] min-h-12 gap-2.5 text-sm text-black font-medium text-right leading-[3] mt-[79px] px-2.5 py-[19px] max-md:mt-10">
+            <Button 
+              variant="outline"
+              className="min-w-[150px] min-h-12 text-sm font-medium bg-white text-black mt-[79px] hover:bg-gray-100 hover:text-black max-md:mt-10"
+            >
               Watch Video
-            </button>
+            </Button>
           </div>
         </div>
         <div className="w-[61%] ml-5 max-md:w-full max-md:ml-0">

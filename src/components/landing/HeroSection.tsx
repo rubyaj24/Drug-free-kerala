@@ -1,4 +1,6 @@
+
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
   return (
@@ -14,13 +16,13 @@ export const HeroSection = () => {
         className="aspect-[7.94] object-contain w-[349px] bg-blend-normal max-w-full"
       />
       <div className="relative self-center flex w-full max-w-[1042px] flex-col items-stretch mt-[107px] -mb-10 max-md:max-w-full max-md:mt-10 max-md:mb-2.5">
-        <div className="flex w-full flex-col items-stretch max-md:max-w-full">
+        <div className="flex w-full flex-col items-center max-md:max-w-full">
           <div className="self-center flex items-center gap-10 justify-center flex-wrap max-md:max-w-full">
             <div className="self-stretch flex min-w-60 flex-col text-white whitespace-nowrap justify-center my-auto py-[75px]">
-              <div className="text-[156px] font-semibold leading-[0] max-md:text-[40px]">
+              <div className="text-[156px] font-semibold leading-[0] max-md:text-[40px] text-center">
                 78+
               </div>
-              <div className="text-[64px] font-medium leading-[0] mt-[79px] max-md:text-[40px] max-md:mt-10">
+              <div className="text-[64px] font-medium leading-[0] mt-[79px] max-md:text-[40px] max-md:mt-10 text-center">
                 Pledges
               </div>
             </div>
@@ -44,18 +46,23 @@ export const HeroSection = () => {
               </span>
             </div>
           </div>
-          <p className="text-neutral-50 text-base font-medium text-center mt-2 max-md:max-w-full">
+          <p className="text-neutral-50 text-base font-medium text-center mt-2 max-w-3xl mx-auto max-md:max-w-full">
             Our movement has one objective – to turn intoxicated lives into
             vibrant communities.
           </p>
         </div>
-        <div className="self-center flex w-[586px] max-w-full items-stretch gap-5 text-sm font-medium text-right leading-[3] flex-wrap justify-between mt-[61px] max-md:mt-10">
-          <button className="self-stretch rounded bg-white min-w-[150px] min-h-14 gap-2.5 text-black px-2.5 py-[23px]">
+        <div className="self-center flex w-[586px] max-w-full items-stretch gap-5 flex-wrap justify-center mt-[61px] max-md:mt-10">
+          <Button
+            variant="outline"
+            className="min-w-[230px] min-h-14 text-sm font-medium bg-white text-black hover:bg-gray-100 hover:text-black"
+          >
             Look up your certificate
-          </button>
-          <button className="self-stretch bg-[rgba(92,183,105,1)] min-w-[150px] min-h-14 gap-2.5 text-white px-2.5 py-[23px] rounded-[5px]">
+          </Button>
+          <Button 
+            className="min-w-[230px] min-h-14 text-sm font-medium bg-[rgba(92,183,105,1)] hover:bg-[rgba(82,163,95,1)]"
+          >
             Take the Pledge
-          </button>
+          </Button>
         </div>
       </div>
     </header>
