@@ -67,7 +67,7 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
     name: "",
     email: "",
   });
-
+  const [uniqueId, setUniqueId] = useState<string>("");
   const [pledgeItems, setPledgeItems] = useState({
     aware: false,
     commit: false,
@@ -94,30 +94,31 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form data
+
     if (!formData.name || !formData.email) {
       alert('Please fill in all required fields');
       return;
     }
 
-    // Validate email format
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       alert('Please enter a valid email address');
       return;
     }
 
-    // Check if at least one pledge is selected
+
     if (!Object.values(pledgeItems).some(value => value)) {
       alert('Please select at least one pledge');
       return;
     }
 
     try {
-      // Get submit button reference
+
       const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
       submitButton.disabled = true;
       submitButton.textContent = 'Submitting...';
+
 
       const response = await fetch('https://mulearn.org/api/v1/drugfreekerala/create/', {
         method: 'POST',
@@ -137,17 +138,34 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      console.log('Pledge submitted successfully:', data);
-      alert('Thank you for taking the pledge!');
+      // Encode email for URL parameter
+      const encodedEmail = encodeURIComponent(formData.email);
+      const getResponse = await fetch(`https://mulearn.org/api/v1/drugfreekerala/get/?email=${encodedEmail}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json',
+        }
+      });
+
+      if (!getResponse.ok) {
+        throw new Error(`HTTP error! status: ${getResponse.status}`);
+      }
+
+      const getData = await getResponse.json();
+      console.log('Fetched data:', getData);
+
+
+      const newUniqueId = "DFKC" + Date.now().toString();
+      setUniqueId(newUniqueId);
+
+      console.log('Pledge submitted successfully');
+      alert(`Thank you for taking the pledge! Your ID: ${newUniqueId}`);
       onClose();
 
     } catch (error) {
-      console.error('Error submitting pledge:', error);
+      console.error('Error:', error);
       alert('Failed to submit pledge. Please try again.');
-      
-    } finally {
-      // Reset button state
       const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
       submitButton.disabled = false;
       submitButton.textContent = 'Take the Pledge';
