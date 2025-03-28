@@ -113,9 +113,34 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
     setIsSubmitting(true);
     
     try {
-      // Generate a unique certificate ID
-      const newCertificateId = generateCertificateId();
-      setCertificateId(newCertificateId);
+      // Get submit button reference
+      const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+
+      const response = await fetch('http://mulearn.org/api/v1/drugfreekerala/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Pledge submitted successfully:', data);
+      alert('Thank you for taking the pledge!');
+      onClose();
+
+    } catch (error) {
+      console.error('Error submitting pledge:', error);
+      alert('Failed to submit pledge. Please try again.');
       
       // Here you would typically save the pledge data to a database
       // For this example, we'll just simulate a server delay
