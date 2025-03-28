@@ -19,7 +19,7 @@ export const HeroSection = () => {
         <div className="flex w-full flex-col items-center max-md:max-w-full">
           <div className="self-center flex items-center gap-10 justify-center flex-wrap max-md:max-w-full">
             <div className="self-stretch flex min-w-60 flex-col text-white whitespace-nowrap justify-center my-auto py-[75px]">
-              <div className="text-[156px] font-semibold leading-[0] max-md:text-[40px] text-center">
+              <div className="text-6xl font-semibold leading-[0] max-md:text-[40px] text-center">
                 78+
               </div>
               <div className="text-[64px] font-medium leading-[0] mt-[79px] max-md:text-[40px] max-md:mt-10 text-center">
