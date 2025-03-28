@@ -1,37 +1,32 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-export const HeroSection = () => {
+interface HeroSectionProps {
+  onPledgeClick?: () => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
   return (
-    <header className="flex flex-col bg-blend-normal relative min-h-[940px] w-full overflow-hidden pt-[89px] pb-[199px] px-20 max-md:max-w-full max-md:pb-[100px] max-md:px-5">
+    <section className="relative w-full overflow-hidden pt-36 pb-20 px-4 md:px-8 lg:px-20">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/a8684813001112ddca76c9158312ab954aeb0847?placeholderIfAbsent=true"
         alt="Hero background"
         className="absolute h-full w-full object-cover inset-0"
       />
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/4364d1fdc705ef009187da087135ecb0628e1dde?placeholderIfAbsent=true"
-        alt="Logo"
-        className="aspect-[7.94] object-contain w-[349px] bg-blend-normal max-w-full"
-      />
-      <div className="relative self-center flex w-full max-w-[1042px] flex-col items-stretch mt-[107px] -mb-10 max-md:max-w-full max-md:mt-10 max-md:mb-2.5">
-        <div className="flex w-full flex-col items-center max-md:max-w-full">
-          <div className="self-center flex items-center gap-10 justify-center flex-wrap max-md:max-w-full">
-            <div className="self-stretch flex min-w-60 flex-col text-white whitespace-nowrap justify-center my-auto py-[75px]">
-              <div className="text-6xl font-semibold leading-[0] max-md:text-[40px] text-center">
-                78+
-              </div>
-              <div className="text-[64px] font-medium leading-[0] mt-[79px] max-md:text-[40px] max-md:mt-10 text-center">
-                Pledges
-              </div>
+      <div className="container mx-auto relative">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/4364d1fdc705ef009187da087135ecb0628e1dde?placeholderIfAbsent=true"
+          alt="Logo"
+          className="object-contain w-[250px] md:w-[349px] max-w-full mb-10 md:mb-16"
+        />
+        <div className="flex flex-col items-center w-full max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between w-full gap-10 mb-10">
+            <div className="flex flex-col items-center text-white mb-8 md:mb-0">
+              <div className="text-4xl md:text-6xl font-semibold">78+</div>
+              <div className="text-3xl md:text-5xl font-medium mt-4">Pledges</div>
             </div>
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/de7e9b674db5daae6346e2c7b4fbca583883cfc0?placeholderIfAbsent=true"
-              alt="Divider"
-              className="aspect-[0] object-contain w-px self-stretch shrink-0 my-auto"
-            />
-            <div className="text-[rgba(244,244,244,1)] text-5xl font-bold leading-[62px] self-stretch w-[599px] my-auto max-md:max-w-full max-md:text-[40px] max-md:leading-[58px]">
+            <div className="hidden md:block h-24 w-px bg-white/30 self-stretch mx-4"></div>
+            <div className="text-[rgba(244,244,244,1)] text-3xl md:text-5xl font-bold leading-tight text-center md:text-left max-w-xl">
               United{" "}
               <span className="text-[rgba(92,183,105,1)]">
                 against addiction
@@ -46,25 +41,26 @@ export const HeroSection = () => {
               </span>
             </div>
           </div>
-          <p className="text-neutral-50 text-base font-medium text-center mt-2 max-w-3xl mx-auto max-md:max-w-full">
+          <p className="text-neutral-50 text-base font-medium text-center mt-2 max-w-3xl mx-auto">
             Our movement has one objective – to turn intoxicated lives into
             vibrant communities.
           </p>
-        </div>
-        <div className="self-center flex w-[586px] max-w-full items-stretch gap-5 flex-wrap justify-center mt-[61px] max-md:mt-10">
-          <Button
-            variant="outline"
-            className="min-w-[230px] min-h-14 text-sm font-medium bg-white text-black hover:bg-gray-100 hover:text-black"
-          >
-            Look up your certificate
-          </Button>
-          <Button 
-            className="min-w-[230px] min-h-14 text-sm font-medium bg-[rgba(92,183,105,1)] hover:bg-[rgba(82,163,95,1)]"
-          >
-            Take the Pledge
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+            <Button
+              variant="outline"
+              className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-white text-black hover:bg-gray-100 hover:text-black"
+            >
+              Look up your certificate
+            </Button>
+            <Button 
+              className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-[rgba(92,183,105,1)] hover:bg-[rgba(82,163,95,1)]"
+              onClick={onPledgeClick}
+            >
+              Take the Pledge
+            </Button>
+          </div>
         </div>
       </div>
-    </header>
+    </section>
   );
 };

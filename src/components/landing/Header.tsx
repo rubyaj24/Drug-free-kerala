@@ -12,7 +12,11 @@ const navigationItems = [
   { label: "Contact", href: "#contact" }
 ];
 
-export const Header = () => {
+interface HeaderProps {
+  onPledgeClick?: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
@@ -59,7 +63,10 @@ export const Header = () => {
 
         {/* Take the Pledge Button */}
         <div className="hidden md:block">
-          <Button className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white">
+          <Button 
+            className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white"
+            onClick={onPledgeClick}
+          >
             Take the Pledge
           </Button>
         </div>
@@ -89,7 +96,10 @@ export const Header = () => {
             ))}
             <Button 
               className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white mt-2 w-full"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onPledgeClick) onPledgeClick();
+              }}
             >
               Take the Pledge
             </Button>
