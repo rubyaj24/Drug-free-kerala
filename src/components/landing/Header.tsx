@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
@@ -19,12 +18,25 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center gap-4">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/4364d1fdc705ef009187da087135ecb0628e1dde?placeholderIfAbsent=true"
-            alt="Logo"
+            src="/images/drugfreekerala.png"
+            alt="Drug Free Kerala Logo"
             className="h-10 object-contain"
           />
+          <div className="h-8 w-[1px] bg-white/20" /> {/* Divider */}
+          <div className="flex flex-end items-center gap-5">
+            <img
+              src="/images/gtech.png"
+              alt="GTech Logo"
+              className="h-8 object-contain"
+            />
+            <img
+              src="/images/mulearn.png"
+              alt="MuLearn Logo"
+              className="h-8 object-contain"
+            />
+          </div>
         </div>
 
         {/* Desktop Navigation */}
