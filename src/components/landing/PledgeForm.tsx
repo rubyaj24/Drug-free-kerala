@@ -119,7 +119,7 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
       submitButton.textContent = 'Submitting...';
 
 
-      const response = await fetch('https://mulearn.org/api/v1/drugfreekerala/create/', {
+      const response = await fetch('https://mulearn.org/api/v1/create/', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -139,7 +139,7 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
 
       // Encode email for URL parameter
       const encodedEmail = encodeURIComponent(formData.email);
-      const getResponse = await fetch(`https://mulearn.org/api/v1/drugfreekerala/get/?email=${encodedEmail}`, {
+      const getResponse = await fetch(`https://mulearn.org/api/v1/get/?email=${encodedEmail}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
