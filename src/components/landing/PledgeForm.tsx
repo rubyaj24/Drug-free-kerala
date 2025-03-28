@@ -62,7 +62,7 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
 };
 
 interface PledgeFormProps {
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
