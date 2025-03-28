@@ -166,43 +166,12 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
       console.error('Error:', error);
       alert('Failed to submit pledge. Please try again.');
       
-      // Here you would typically save the pledge data to a database
-      // For this example, we'll just simulate a server delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Save to localStorage as an example (in a real app, this would be server-side)
-      const pledgeData = {
-        name: formData.name,
-        email: formData.email,
-        certificateId: newCertificateId,
-        pledgeDate: new Date().toISOString(),
-        pledgeItems
-      };
-      
-      // Store in localStorage (in a real app, this would be in a database)
-      const existingPledges = JSON.parse(localStorage.getItem('pledges') || '[]');
-      existingPledges.push(pledgeData);
-      localStorage.setItem('pledges', JSON.stringify(existingPledges));
-      
-      // Show success modal
-      setShowSuccessModal(true);
-    } catch (error) {
-      console.error("Error submitting pledge:", error);
-      alert("There was an error submitting your pledge. Please try again.");
     } finally {
-      setIsSubmitting(false);
+      // Reset button state
+      const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitButton.disabled = false;
+      submitButton.textContent = 'Take the Pledge';
     }
-  };
-
-  const handleViewCertificate = () => {
-    setShowSuccessModal(false);
-    setShowCertificate(true);
-  };
-
-  const handleCloseAll = () => {
-    setShowSuccessModal(false);
-    setShowCertificate(false);
-    if (onClose) onClose();
   };
 
   return (
