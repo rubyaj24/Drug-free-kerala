@@ -9,6 +9,7 @@ const navigationItems = [
   { label: "About", href: "#about" },
   { label: "Initiatives", href: "#initiatives" },
   { label: "Journey", href: "#journey" },
+  { label: "Certificate", href: "/create-certificate" },
   { label: "Contact", href: "#contact" }
 ];
 
@@ -37,11 +38,13 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
     <header className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md">
       <div ref={menuRef} className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <img
-            src="/images/drugfreekerala.png"
-            alt="Drug Free Kerala Logo"
-            className="h-10 object-contain"
-          />
+          <a href="/">
+            <img
+              src="/images/drugfreekerala.png"
+              alt="Drug Free Kerala Logo"
+              className="h-10 object-contain"
+            />
+          </a>
           <div className="h-8 w-[1px] bg-white/20" /> {/* Divider */}
           <div className="flex flex-end items-center gap-5">
             <img
