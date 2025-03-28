@@ -16,8 +16,8 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
   onChange,
 }) => {
   return (
-    <div className="flex gap-5 items-start">
-      <label htmlFor={id} className="flex items-center gap-5 cursor-pointer">
+    <div className="flex gap-3 md:gap-5 items-start">
+      <label htmlFor={id} className="flex items-center gap-3 md:gap-5 cursor-pointer">
         <div className="relative flex-shrink-0">
           <input
             type="checkbox"
@@ -25,7 +25,7 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
             checked={checked}
             onChange={(e) => onChange(id, e.target.checked)}
             className="absolute opacity-0 w-[27px] h-[27px] cursor-pointer"
-            aria-labelledby={id + "-text"}
+            aria-labelledby={`${id}-text`}
           />
           <div className="w-[27px] h-[27px] rounded-full bg-[#D9D9D9] flex items-center justify-center">
             {checked && (
@@ -102,20 +102,20 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
 
   return (
     <section className="bg-zinc-50 rounded-lg w-full">
-      <div className="p-5 rounded-2xl border-stone-300 border-opacity-70 w-full">
+      <div className="p-5 rounded-2xl w-full">
         <h1 className="mb-5 text-2xl font-medium text-center text-black">
           Join the Movement
         </h1>
 
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-7 mb-10">
+          <div className="flex flex-col gap-5 mb-8">
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               value={formData.name}
               onChange={handleInputChange}
-              className="px-7 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-neutral-700 text-opacity-70"
+              className="px-5 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-neutral-700 text-opacity-70 focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)]"
               aria-label="Your Name"
               required
             />
@@ -125,18 +125,18 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
-              className="px-7 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-neutral-700 text-opacity-70"
+              className="px-5 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-neutral-700 text-opacity-70 focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)]"
               aria-label="Email"
               required
             />
           </div>
 
-          <p className="mb-6 text-base text-zinc-800">
+          <p className="mb-5 text-base text-zinc-800">
             By pledging to this drug free campaign, I accept the following
             conditions
           </p>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4">
             <PledgeItem
               id="aware"
               text="I am aware of the harmful effects that drugs have on our society."
@@ -153,49 +153,30 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
 
             <PledgeItem
               id="discourage"
-              text={
-                <span>
-                  I will not encourage anyone to use drugs and will discourage
-                  drug
-                  <br />
-                  use in my community.
-                </span>
-              }
+              text="I will not encourage anyone to use drugs and will discourage drug use in my community."
               checked={pledgeItems.discourage}
               onChange={handlePledgeChange}
             />
 
             <PledgeItem
               id="report"
-              text={
-                <span>
-                  I will report any instances of drug use or trafficking to the
-                  <br />
-                  authorities to help fight drug abuse.
-                </span>
-              }
+              text="I will report any instances of drug use or trafficking to the authorities to help fight drug abuse."
               checked={pledgeItems.report}
               onChange={handlePledgeChange}
             />
 
             <PledgeItem
               id="support"
-              text={
-                <span>
-                  I will support and help those affected by drugs to recover and
-                  lead
-                  <br />a healthy, normal life.
-                </span>
-              }
+              text="I will support and help those affected by drugs to recover and lead a healthy, normal life."
               checked={pledgeItems.support}
               onChange={handlePledgeChange}
             />
           </div>
 
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-8">
             <button
               type="submit"
-              className="h-10 text-sm font-medium text-black bg-white rounded border-sky-600 border-[0.5px] w-[241px] max-sm:w-full hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-600 transition-colors"
+              className="h-10 text-sm font-medium text-black bg-white rounded border-[rgba(92,183,105,1)] border-[0.5px] w-full sm:w-[241px] hover:bg-[rgba(92,183,105,0.1)] focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)] transition-colors"
               aria-label="Take the Pledge"
             >
               Take the Pledge

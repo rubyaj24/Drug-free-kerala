@@ -11,10 +11,14 @@ import { PledgeForm } from "@/components/landing/PledgeForm";
 const Index = () => {
   const [showPledgeForm, setShowPledgeForm] = useState(false);
 
+  const handlePledgeClick = () => {
+    setShowPledgeForm(true);
+  };
+
   return (
-    <div className="bg-[rgba(239,238,236,1)] flex flex-col overflow-hidden items-stretch">
-      <Header onPledgeClick={() => setShowPledgeForm(true)} />
-      <HeroSection />
+    <div className="bg-[rgba(239,238,236,1)] flex flex-col min-h-screen">
+      <Header onPledgeClick={handlePledgeClick} />
+      <HeroSection onPledgeClick={handlePledgeClick} />
       <AboutSection />
       <PillarsSection />
       <InitiativesSection />
@@ -22,8 +26,8 @@ const Index = () => {
       <Footer />
       
       {showPledgeForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
+          <div className="bg-white rounded-lg p-6 max-w-xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-end mb-2">
               <button 
                 onClick={() => setShowPledgeForm(false)}
