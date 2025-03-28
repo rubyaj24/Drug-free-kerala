@@ -126,8 +126,7 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
-          pledges: pledgeItems,
+          email: formData.email
         }),
       });
 
