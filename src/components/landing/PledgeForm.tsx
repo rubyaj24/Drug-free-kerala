@@ -25,7 +25,7 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
             checked={checked}
             onChange={(e) => onChange(id, e.target.checked)}
             className="absolute opacity-0 w-[27px] h-[27px] cursor-pointer"
-            aria-labelledby={${id}-text}
+            aria-labelledby={id + "-text"}
           />
           <div className="w-[27px] h-[27px] rounded-full bg-[#D9D9D9] flex items-center justify-center">
             {checked && (
