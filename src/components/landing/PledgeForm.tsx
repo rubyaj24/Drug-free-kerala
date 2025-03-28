@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { generateCertificateId } from "@/lib/utils";
+import { SuccessModal } from "./SuccessModal";
+import { CertificateView } from "./CertificateView";
 
 interface PledgeItemProps {
   id: string;
@@ -76,6 +79,11 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
     support: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
+  const [certificateId, setCertificateId] = useState("");
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -94,25 +102,16 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-
-    if (!formData.name || !formData.email) {
-      alert('Please fill in all required fields');
+    // Check if all pledge items are checked
+    const allChecked = Object.values(pledgeItems).every(value => value === true);
+    
+    if (!allChecked) {
+      alert("Please accept all pledge conditions before submitting.");
       return;
     }
-
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      alert('Please enter a valid email address');
-      return;
-    }
-
-
-    if (!Object.values(pledgeItems).some(value => value)) {
-      alert('Please select at least one pledge');
-      return;
-    }
-
+    
+    setIsSubmitting(true);
+    
     try {
 
       const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
@@ -166,32 +165,49 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to submit pledge. Please try again.');
-      const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
-      submitButton.disabled = false;
-      submitButton.textContent = 'Take the Pledge';
+      
+      // Here you would typically save the pledge data to a database
+      // For this example, we'll just simulate a server delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Save to localStorage as an example (in a real app, this would be server-side)
+      const pledgeData = {
+        name: formData.name,
+        email: formData.email,
+        certificateId: newCertificateId,
+        pledgeDate: new Date().toISOString(),
+        pledgeItems
+      };
+      
+      // Store in localStorage (in a real app, this would be in a database)
+      const existingPledges = JSON.parse(localStorage.getItem('pledges') || '[]');
+      existingPledges.push(pledgeData);
+      localStorage.setItem('pledges', JSON.stringify(existingPledges));
+      
+      // Show success modal
+      setShowSuccessModal(true);
+    } catch (error) {
+      console.error("Error submitting pledge:", error);
+      alert("There was an error submitting your pledge. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  const handleViewCertificate = () => {
+    setShowSuccessModal(false);
+    setShowCertificate(true);
+  };
+
+  const handleCloseAll = () => {
+    setShowSuccessModal(false);
+    setShowCertificate(false);
+    if (onClose) onClose();
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-zinc-50 rounded-lg">
-        <button
-          onClick={onClose}
-          className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
-          aria-label="Close"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+    <>
+      <section className="bg-zinc-50 rounded-lg w-full">
         <div className="p-5 rounded-2xl w-full">
           <h1 className="mb-5 text-2xl font-medium text-center text-black">
             Join the Movement
@@ -266,16 +282,44 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
             <div className="flex justify-center mt-8">
               <button
                 type="submit"
-                className="h-10 text-sm font-medium text-black bg-white rounded border-[rgba(92,183,105,1)] border-[0.5px] w-full sm:w-[241px] hover:bg-[rgba(92,183,105,0.1)] focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)] transition-colors"
+                disabled={isSubmitting}
+                className="h-10 text-sm font-medium text-black bg-white rounded border-[rgba(92,183,105,1)] border-[0.5px] w-full sm:w-[241px] hover:bg-[rgba(92,183,105,0.1)] focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                 aria-label="Take the Pledge"
               >
-                Take the Pledge
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-[rgba(92,183,105,1)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  "Take the Pledge"
+                )}
               </button>
             </div>
           </form>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {showSuccessModal && (
+        <SuccessModal
+          name={formData.name}
+          certificateId={certificateId}
+          onViewCertificate={handleViewCertificate}
+          onClose={handleCloseAll}
+        />
+      )}
+
+      {showCertificate && (
+        <CertificateView
+          name={formData.name}
+          certificateId={certificateId}
+          onClose={handleCloseAll}
+        />
+      )}
+    </>
   );
 };
 
