@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -18,10 +18,24 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div ref={menuRef} className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <img
             src="/images/drugfreekerala.png"
