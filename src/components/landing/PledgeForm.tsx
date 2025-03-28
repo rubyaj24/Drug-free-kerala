@@ -48,7 +48,7 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
           </div>
         </div>
         <span
-          id={${id}-text}
+          id={`${id}-text`}
           className="text-[15px] font-medium font-['Poppins']"
         >
           {text}
@@ -58,7 +58,11 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
   );
 };
 
-const PledgeForm: React.FC = () => {
+interface PledgeFormProps {
+  onClose?: () => void;
+}
+
+const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -91,12 +95,15 @@ const PledgeForm: React.FC = () => {
     e.preventDefault();
     // Handle form submission logic here
     console.log({ formData, pledgeItems });
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (
-    <section className="flex justify-center items-center p-5 w-full bg-neutral-100 min-h-screen">
-      <div className="p-11 rounded-2xl border bg-zinc-50 border-stone-300 border-opacity-70 w-[647px] max-md:w-[90%] max-sm:p-5 max-sm:w-full">
-        <h1 className="mb-10 text-4xl font-medium text-center text-black max-md:text-3xl max-sm:mb-8 max-sm:text-3xl">
+    <section className="bg-zinc-50 rounded-lg w-full">
+      <div className="p-5 rounded-2xl border-stone-300 border-opacity-70 w-full">
+        <h1 className="mb-5 text-2xl font-medium text-center text-black">
           Join the Movement
         </h1>
 
@@ -200,4 +207,4 @@ const PledgeForm: React.FC = () => {
   );
 };
 
-export default PledgeForm;
+export { PledgeForm };
