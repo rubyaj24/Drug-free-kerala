@@ -7,18 +7,13 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
   return (
-    <section className="relative w-full overflow-hidden pt-36 pb-20 px-4 md:px-8 lg:px-20">
+    <section className="relative w-full overflow-hidden min-h-screen flex items-center px-4 md:px-8 lg:px-20">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/a8684813001112ddca76c9158312ab954aeb0847?placeholderIfAbsent=true"
         alt="Hero background"
         className="absolute h-full w-full object-cover inset-0"
       />
-      <div className="container mx-auto relative">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/4364d1fdc705ef009187da087135ecb0628e1dde?placeholderIfAbsent=true"
-          alt="Logo"
-          className="object-contain w-[250px] md:w-[349px] max-w-full mb-10 md:mb-16"
-        />
+      <div className="container mx-auto relative py-20">
         <div className="flex flex-col items-center w-full max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between w-full gap-10 mb-10">
             <div className="flex flex-col items-center text-white mb-8 md:mb-0">
