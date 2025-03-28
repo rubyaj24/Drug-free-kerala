@@ -119,15 +119,18 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
       submitButton.disabled = true;
       submitButton.textContent = 'Submitting...';
 
-      const response = await fetch('http://mulearn.org/api/v1/drugfreekerala/create/', {
+      const response = await fetch('https://mulearn.org/api/v1/drugfreekerala/create/', {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email
         }),
+        redirect: 'follow',
       });
 
       if (!response.ok) {
